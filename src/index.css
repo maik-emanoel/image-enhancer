@@ -5,10 +5,7 @@
 @layer base {
     html, body, #root {
         height: 100vh;
-    }
-
-    body {
-        background-image: linear-gradient(102.32deg, #030422 -2.74%, #090114 101.6%);
+        background: #000013;
     }
 
     #root {
