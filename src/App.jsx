@@ -15,7 +15,7 @@ export const CustomHandle = ({ ...props }) => {
   );
 
   return (
-    <ReactCompareSlider
+    <ReactCompareSlider className="aspect-video"
       {...props}
       handle={
         <ReactCompareSliderHandle
@@ -44,7 +44,8 @@ export const CustomHandle = ({ ...props }) => {
       style={{
         display: "flex",
         width: "100%",
-        height: "65vh"
+        maxWidth: "810px",
+        maxHeight: "500px"
       }}
     />
   );
@@ -53,7 +54,7 @@ export const CustomHandle = ({ ...props }) => {
 export default function App() {
   return (
     <>
-      <h1 className="text-4xl mb-12 font-bold tracking-wide uppercase text-white drop-shadow-h1Shadow">IA - Image Enhancer</h1>
+      <h1 className="text-4xl mb-12 font-bold tracking-wide uppercase text-white drop-shadow-h1Shadow sm:text-2xl">IA - Image Enhancer</h1>
 
       <div className="rounded-lg overflow-hidden mx-5 shadow-containerShadow border border-zinc-900">
         <CustomHandle position={50} />
