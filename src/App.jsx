@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import img1 from "./assets/img1.jpg";
 
 import {
@@ -22,9 +22,11 @@ export const CustomHandle = ({ ...props }) => {
     []
   );
 
-  setTimeout(() => {
-    setIsLoading((prevState) => !prevState);
-  }, 2000);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <>
