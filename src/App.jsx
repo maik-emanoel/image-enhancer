@@ -1,47 +1,66 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import img1 from "./assets/img1.jpg";
 
 import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
-import { CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { CaretLeft, CaretRight, CircleNotch } from "@phosphor-icons/react";
 
 // eslint-disable-next-line react/prop-types
 export const CustomHandle = ({ ...props }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const handlePositionChange = useCallback(
     (position) => console.log("[Portrait]", position),
     []
   );
 
+  setTimeout(() => {
+    setIsLoading(prevState => !prevState);
+  }, 2000)
+
   return (
-    <ReactCompareSlider
-      className="aspect-video"
-      {...props}
-      handle={
-        <div className="bg-[#fffc] h-full w-[2px] relative cursor-w-resize">
-          <button className="w-12 h-12 backdrop-blur-md absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] rounded-full border-[2px] border-[#fffc] flex items-center justify-center cursor-w-resize sm:w-4 sm:h-4">
-            <CaretLeft weight="fill" color="#fffc" className="w-4 sm:hidden" />
-            <CaretRight weight="fill" color="#fffc" className="w-4 sm:hidden" />
-          </button>
+    <>
+      {isLoading ? (
+        <div>
+          <CircleNotch className="animate-spin" color="#fffc" size={24} weight="bold" />
         </div>
-      }
-      itemOne={
-        <ReactCompareSliderImage
-          src={img1}
-          style={{ filter: "blur(1.5px)" }}
-          alt="one"
+      ) : (
+        <ReactCompareSlider
+          className="aspect-video animate-appear sm:aspect-auto"
+          {...props}
+          handle={
+            <div className="bg-[#fffc] h-full w-[2px] relative cursor-w-resize">
+              <button className="w-12 h-12 backdrop-blur-md absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] rounded-full border-[2px] border-[#fffc] flex items-center justify-center cursor-w-resize sm:w-4 sm:h-4">
+                <CaretLeft weight="fill" color="#fffc" className="w-4 sm:hidden" />
+                <CaretRight weight="fill" color="#fffc" className="w-4 sm:hidden" />
+              </button>
+            </div>
+          }
+          itemOne={
+            <ReactCompareSliderImage
+              src={img1}
+              style={{ filter: "blur(1.5px)" }}
+              alt="one"
+            />
+          }
+          itemTwo={
+            <ReactCompareSliderImage
+              src={img1}
+              alt="two"
+            />
+          }
+          onPositionChange={handlePositionChange}
+          style={{
+            display: "flex",
+            width: "100%",
+            maxWidth: "810px",
+            maxHeight: "500px",
+          }}
         />
-      }
-      itemTwo={<ReactCompareSliderImage src={img1} alt="two" />}
-      onPositionChange={handlePositionChange}
-      style={{
-        display: "flex",
-        width: "100%",
-        maxWidth: "810px",
-        maxHeight: "500px",
-      }}
-    />
+      )}
+    </>
   );
 };
 
@@ -52,7 +71,7 @@ export default function App() {
         IA - Image Enhancer
       </h1>
 
-      <div className="rounded-lg overflow-hidden mx-5 shadow-containerShadow border border-zinc-900">
+      <div className="rounded-lg overflow-hidden mx-5 shadow-containerShadow">
         <CustomHandle position={50} />
       </div>
     </>
