@@ -11,6 +11,14 @@ export default {
       },
       boxShadow: {
         containerShadow: '0px 113px 45px rgba(0, 0, 0, 0.02), 0px 64px 38px rgba(0, 0, 0, 0.08), 0px 28px 28px rgba(0, 0, 0, 0.13), 0px 7px 16px rgba(0, 0, 0, 0.15), 0px 0px 0px rgba(0, 0, 0, 0.15)'
+      },
+      animation: {
+        appear: 'appear .4s ease-in-out backwards'
+      },
+      keyframes: {
+        appear: {
+          '0%': { opacity: '0', scale: '.5' }
+        }
       }
     },
     screens: {
